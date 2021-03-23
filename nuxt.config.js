@@ -17,7 +17,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: ['~/assets/components.scss','~/assets/layout.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
@@ -31,6 +31,8 @@ export default {
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
+    //fonts.google.com
+    '@nuxtjs/google-fonts',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -73,6 +75,24 @@ export default {
         },
       },
     },
+  },
+
+  //Font
+  googleFonts: {
+    families: {
+      Inter: true,
+      'Source Serif Pro': true,
+      Poppins: true,
+      'Source Serif Pro': [400, 600],
+      Inter: [500, 600, 700, 800, 900],
+      Poppins: [700, 800, 900]
+    },
+    display: 'swap',
+    prefetch: true,
+    preload: true,
+    download: true,
+    base64: false,
+    fontsPath: '~assets/fonts'
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

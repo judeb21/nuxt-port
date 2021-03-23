@@ -1,5 +1,10 @@
 <template>
-  <v-row justify="center" align="center">
+  <div>
+    <Header :header="heading" class="home__wrapper" />
+    <Project />
+    <Footer />
+  </div>
+  <!-- <v-row justify="center" align="center">
     <v-col cols="12" sm="8" md="6">
       <div class="text-center">
         <logo />
@@ -71,23 +76,86 @@
             Nuxt GitHub
           </a>
         </v-card-text>
-        <v-card-actions>
+        <v-card-actions class="toggle-box">
           <v-spacer />
+          <div class="toggleWrapper">
+            <input
+              v-if="$vuetify.theme.dark"
+              id="dn"
+              type="checkbox"
+              class="dn"
+              checked
+              @click="toggleTheme"
+            />
+            <input
+              v-else
+              id="dn"
+              type="checkbox"
+              class="dn"
+              @click="toggleTheme"
+            />
+            <label for="dn" class="toggle">
+              <span class="toggle__handler">
+                <span class="crater crater--1"></span>
+                <span class="crater crater--2"></span>
+                <span class="crater crater--3"></span>
+              </span>
+              <span class="star star--1"></span>
+              <span class="star star--2"></span>
+              <span class="star star--3"></span>
+              <span class="star star--4"></span>
+              <span class="star star--5"></span>
+              <span class="star star--6"></span>
+            </label>
+          </div>
           <v-btn color="primary" nuxt to="/inspire"> Continue </v-btn>
         </v-card-actions>
       </v-card>
     </v-col>
-  </v-row>
+  </v-row> -->
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-import VuetifyLogo from '~/components/VuetifyLogo.vue'
+// import Logo from '~/components/Logo.vue'
+// import VuetifyLogo from '~/components/VuetifyLogo.vue'
+import Header from '~/components/Header.vue'
+import Project from '~/components/Index/Project.vue'
+import Footer from '~/components/Footer.vue'
 
 export default {
   components: {
-    Logo,
-    VuetifyLogo,
+    // Logo,
+    // VuetifyLogo,
+    Header,
+    Project,
+    Footer,
+  },
+  data() {
+    return {
+      heading: [
+        {
+          layerOne: ['H', 'e', 'l', 'l', 'o'],
+        },
+        {
+          layerTwo: ['M', 'y', ' ', 'N', 'a', 'm', 'e', ' ', 'i', 's'],
+        },
+        {
+          layerThree: ['J', 'u', 'd', 'e', ' ', 'B', 'i', 'o', 's', 'e'],
+        },
+      ],
+    }
+  },
+  mounted() {
+    const theme = localStorage.getItem('useDarkTheme')
+    if (theme) {
+      this.$vuetify.theme.dark = true
+    } else this.$vuetify.theme.dark = false
+  },
+  methods: {
+    toggleTheme() {
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark
+      localStorage.setItem('useDarkTheme', this.$vuetify.theme.dark.toString())
+    },
   },
 }
 </script>
